@@ -4,6 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <link href="styles.css" rel="stylesheet">
+
+    <style id="rocket-style">
+        @keyframes floatRocket {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        #rocket {
+            animation: floatRocket 2s ease-in-out infinite;
+        }
+    </style>
 </head>
 
 <body style="margin:0; font-family:sans-serif; background:#0f172a; color:white;">
@@ -25,7 +45,10 @@
   backdrop-filter: blur(10px);
 ">
 
-            <h1 style="margin-bottom:10px;">🚀 AI Schema Generator</h1>
+            <h1 style="margin-bottom:10px;">
+                <span id="rocket" style="display:inline-block;">🚀</span>
+                AI Schema Generator
+            </h1>
 
             <p style="color:#cbd5f5; margin-bottom:20px;">
                 Instantly generate your project structure.
@@ -42,12 +65,38 @@
   font-weight:600;
   transition:0.2s;
 " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
-                Create Schema
+                <span id="btnText">Create Schema</span>
             </button>
         </div>
 
     </div>
 
+    <script id="anim-js">
+        document.getElementById("create").onclick = () => {
+            debugger;
+            const textEl = document.getElementById("btnText");
+            const text = "Create Schema";
+
+            textEl.innerHTML = "";
+
+            // break into letters
+            text.split("").forEach((char, i) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.style.opacity = 0;
+                span.style.display = "inline-block";
+                span.style.transform = "translateY(10px)";
+                span.style.transition = "0.3s";
+
+                textEl.appendChild(span);
+
+                setTimeout(() => {
+                    span.style.opacity = 1;
+                    span.style.transform = "translateY(0)";
+                }, i * 50);
+            });
+        };
+    </script>
 </body>
 
 </html>
