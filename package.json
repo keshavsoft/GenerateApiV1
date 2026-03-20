@@ -1,0 +1,53 @@
+{
+  "name": "GenerateApiV1",
+  "displayName": "GenerateApiV1",
+  "publisher": "KeshavSoft",
+  "description": "KeshavSoft AI with voice capture",
+  "version": "1.1.1",
+  "type": "module",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keshavsoft/keshavai.git"
+  },
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ext.openUI",
+        "title": "ext openUI"
+      }
+    ],
+    "menus": {
+      "explorer/context": [],
+      "editor/context": []
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.109.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.39.3",
+    "postcss": "^8.5.8"
+  }
+}
