@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as vscode from 'vscode';
+
 import { StartFunc as CreateSchema } from './CreateSchema/entryFile.js';
 
 export function createSchemaStart(context) {
@@ -11,12 +12,9 @@ export function createSchemaStart(context) {
         return;
     };
 
-    const targetPath = workspace.uri.fsPath;
+    // const targetPath = workspace.uri.fsPath;
+    const targetPath = path.join(workspace.uri.fsPath, 'Config');
     const sourcePath = path.join(context.extensionPath, 'media', 'template');
-
-    // fs.cpSync(sourcePath, targetPath, {
-    //     recursive: true
-    // });
 
     CreateSchema({ inToPath: targetPath });
 

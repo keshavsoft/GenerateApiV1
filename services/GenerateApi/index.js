@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import fs from 'fs';
+import path from 'path';
 
 import { createVersionFolder } from "./version/createVersion.js";
 import { getSchemaFiles } from "./schema/getSchemaFiles.js";
@@ -10,15 +12,44 @@ function getBasePath() {
     return workspace?.uri.fsPath;
 };
 
-// only orchestration
+// small safety fix (avoid crash if folder empty/unreadable)
+function isFirstRun(base) {
+    if (!fs.existsSync(base)) return true;
+
+    return false;
+    // const items = fs.readdirSync(base);
+
+    // return !items.some(name => /^V\d+$/.test(name));
+};
+
+// prevent overwriting user files on first run
+function copyTemplateOnce(base, context) {
+    const source = path.join(context.extensionPath, 'media', 'template');
+    if (!fs.existsSync(source)) return;
+
+    fs.cpSync(source, base, {
+        recursive: true,
+        errorOnExist: false   // 👈 important
+    });
+};
+
+// orchestration only
 export function buildAPI(context) {
     const base = getBasePath();
     if (!base) return;
 
-    const apiDir = createVersionFolder(base);
-    const jsonFiles = getSchemaFiles(base);
+    const appFilePath = path.join(base, "app.js");
 
+    // 🔥 FIRST RUN CHECK
+    if (isFirstRun(appFilePath)) {
+        copyTemplateOnce(base, context);
+    };
+
+    const configPath = path.join(base, "Config");
+    const jsonFiles = getSchemaFiles(base);
     if (!jsonFiles.length) return;
+
+    const apiDir = createVersionFolder(base);
 
     createApiFolders(apiDir, jsonFiles, context);
     createRoutesFile(apiDir, jsonFiles);
