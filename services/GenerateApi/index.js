@@ -43,7 +43,9 @@ export function buildAPI(context) {
         copyTemplateOnce(base, context);
     };
 
-    const jsonFiles = getSchemaFiles(base);
+    const schemaDir = path.join(base, "Config", 'Schemas');
+
+    const jsonFiles = getSchemaFiles({ inSchemaDir: schemaDir });
 
     if (!jsonFiles.length) return;
 
@@ -51,7 +53,11 @@ export function buildAPI(context) {
 
     const apiDir = path.join(base, `V${newVersion}`);
 
-    createApiFolders(apiDir, jsonFiles, context);
+    createApiFolders({
+        apiDir, jsonFiles, context,
+        inSchemaPath: schemaDir
+    });
+
     createRoutesFile(apiDir, jsonFiles);
 
     attachVersionToApp(base, apiDir);

@@ -1,14 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-export function getSchemaFiles(base) {
-    const schemaDir = path.join(base, "Config", 'Schemas');
-
-    if (!fs.existsSync(schemaDir)) {
+export function getSchemaFiles({ inSchemaDir }) {
+    if (!fs.existsSync(inSchemaDir)) {
         vscode.window.showErrorMessage('Schemas folder not found');
         return [];
     }
 
-    const files = fs.readdirSync(schemaDir);
+    const files = fs.readdirSync(inSchemaDir);
     return files.filter(f => f.endsWith('.json'));
 };
