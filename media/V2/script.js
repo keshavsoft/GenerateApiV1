@@ -6,9 +6,15 @@ document.getElementById("create").addEventListener("click", () => {
     });
 });
 
+document.getElementById("build").addEventListener("click", () => {
+    vscode.postMessage({
+        command: 'Build'
+    });
+});
+
 window.addEventListener('message', (event) => {
     const msg = event.data;
-debugger;
+    // debugger;
     if (msg.type === 'init') {
         updateUI(msg.hasSchema);
     };

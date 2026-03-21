@@ -6,7 +6,7 @@ export function sendInitialState(panel) {
     const workspace = vscode.workspace.workspaceFolders?.[0];
 
     const hasSchema = workspace
-        ? fs.existsSync(path.join(workspace.uri.fsPath, 'generated-schema'))
+        ? fs.existsSync(path.join(workspace.uri.fsPath, 'Schemas'))
         : false;
 
     setTimeout(() => {

@@ -184,3 +184,7 @@ Cross-platform support
 1.1.2
 
 Schema copie
+
+1.1.3
+
+routes js perfect
