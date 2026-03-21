@@ -181,24 +181,6 @@ Cross-platform support
 
 # License
 
-This project uses:
+1.1.2
 
-* Whisper.cpp
-* SoX
-
-Version History
-1.1.4
-
-Voice-to-text feature working perfectly.
-
-1.1.5
-
-Webview introduced, but voice feature not working.
-
-1.1.6
-
-FetchAsPost feature implemented successfully.
-
-1.1.7
-
-Fetch logic modularized.
+Schema copie
