@@ -2,53 +2,56 @@ import fs from 'fs';
 import path from 'path';
 import { createSubRoutesFile } from './subRouteHelper.js';
 
-const createCommonFolder = ({ inTargetPath, inTableName, inTableColumns }) => {
-    const commonDir = path.join(inTargetPath, 'CommonFuncs');
+const ensureDir = (dir) => fs.mkdirSync(dir, { recursive: true });
 
-    if (!fs.existsSync(commonDir)) {
-        fs.mkdirSync(commonDir, { recursive: true });
-
-        const params = {
-            DataPath: "Data",
-            TableName: inTableName,
-            Columns: inTableColumns
-        };
-
-        fs.writeFileSync(
-            path.join(commonDir, 'params.json'),
-            JSON.stringify(params, null, 2)
-        );
-    }
+const readSchema = (schemaPath, file) => {
+    const raw = fs.readFileSync(path.join(schemaPath, file));
+    return JSON.parse(raw);
 };
 
-export function createApiFolders({ apiDir, jsonFiles, context, inSchemaPath }) {
-    const templateDir = path.join(context.extensionPath, 'media', 'api-template');
-    const allowed = ['Insert', 'Find', 'Read'];
+const writeParams = ({ target, tableName, columns, inSubRoutes }) => {
+    const dir = path.join(target, 'CommonFuncs');
+    ensureDir(dir);
 
-    jsonFiles.forEach(file => {
-        const name = path.basename(file, '.json');
-        const target = path.join(apiDir, name);
-        const tableFileData = fs.readFileSync(path.join(inSchemaPath, file));
-        const tableFileDataAsJson = JSON.parse(tableFileData);
+    const params = {
+        DataPath: "Data", TableName: tableName, Columns: columns || [],
+        NonSecured: {
+            SubRoutes: inSubRoutes
+        }
+    };
 
-        fs.mkdirSync(target, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'params.json'), JSON.stringify(params, null, 2));
+};
 
-        createCommonFolder({
-            inTargetPath: target,
-            inTableName: name,
-            inTableColumns: tableFileDataAsJson.columns
-        });
-
-        fs.readdirSync(templateDir).forEach(folder => {
-            if (!allowed.includes(folder)) return;
-
-            fs.cpSync(
-                path.join(templateDir, folder),
-                path.join(target, folder),
-                { recursive: true }
-            );
-        });
-
-        createSubRoutesFile(target, allowed);
+const copyTemplates = ({ templateDir, target, allowed }) => {
+    fs.readdirSync(templateDir).forEach(folder => {
+        if (!allowed.includes(folder)) return;
+        fs.cpSync(path.join(templateDir, folder), path.join(target, folder), { recursive: true, force: true });
     });
 };
+
+const processFile = ({ file, apiDir, schemaPath, templateDir, allowed }) => {
+    const name = path.basename(file, '.json');
+    const target = path.join(apiDir, name);
+    const schema = readSchema(schemaPath, file);
+
+    ensureDir(target);
+    writeParams({
+        target, tableName: name, columns: schema?.columns,
+        inSubRoutes: schema?.NonSecured?.SubRoutes
+    });
+    
+    copyTemplates({ templateDir, target, allowed });
+    createSubRoutesFile(target, allowed);
+};
+
+export function createApiFolders({ apiDir, jsonFiles, context, inSchemaPath, allowed = ['Insert', 'Find', 'Read'] }) {
+    const templateDir = path.join(context.extensionPath, 'media', 'api-template');
+    jsonFiles.forEach(file => processFile({
+        file,
+        apiDir,
+        schemaPath: inSchemaPath,
+        templateDir,
+        allowed
+    }));
+}
