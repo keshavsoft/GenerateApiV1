@@ -1,9 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import * as vscode from 'vscode';
-import { buildAPI } from './GenerateApi/entryFile.js';
+import { buildAPI } from './GenerateApi/index.js';
 
 export function StartFunc(context) {
     buildAPI(context);
-    
 };

@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import * as vscode from 'vscode';
 
 function createRoutesFile(apiDir, files) {
     const imports = [];
