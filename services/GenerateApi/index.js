@@ -55,7 +55,8 @@ export function buildAPI(context) {
 
     createApiFolders({
         apiDir, jsonFiles, context,
-        inSchemaPath: schemaDir
+        inSchemaPath: schemaDir,
+        inNewVersion: `V${newVersion}`
     });
 
     createRoutesFile(apiDir, jsonFiles);
