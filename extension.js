@@ -19,8 +19,8 @@ export function activate(context) {
 
 			panel.webview.html = getWebviewContent(context, panel);
 
-			panel.webview.onDidReceiveMessage((message) => {
-				handleMessage(message, context, panel);
+			panel.webview.onDidReceiveMessage(async (message) => {
+				await handleMessage(message, context, panel);
 			});
 
 			sendInitialState(panel);

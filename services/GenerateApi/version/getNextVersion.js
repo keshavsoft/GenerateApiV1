@@ -11,5 +11,4 @@ export function getNextVersionFolder(basePath) {
     const next = versions.length ? Math.max(...versions) + 1 : 1;
 
     return next;
-    return path.join(basePath, `V${next}`);
 };

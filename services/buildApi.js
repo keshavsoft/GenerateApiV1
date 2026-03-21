@@ -1,5 +1,5 @@
 import { buildAPI } from './GenerateApi/index.js';
 
-export function StartFunc(context) {
-    buildAPI(context);
+export const StartFunc = async (context) => {
+    await buildAPI(context);
 };

@@ -7,6 +7,7 @@ import { getSchemaFiles } from "./schema/getSchemaFiles.js";
 import { createApiFolders } from "./folders/createApiFolders.js";
 import { createRoutesFile } from "./createRouteFile.js";
 import { attachVersionToApp } from "./alterApp.js";
+import { createDataFolder } from "./createDataFolder.js";
 
 function getBasePath() {
     const workspace = vscode.workspace.workspaceFolders?.[0];
@@ -34,7 +35,7 @@ function copyTemplateOnce(base, context) {
 };
 
 // orchestration only
-export function buildAPI(context) {
+export const buildAPI = async (context) => {
     const base = getBasePath();
     if (!base) return;
 
@@ -62,4 +63,10 @@ export function buildAPI(context) {
     createRoutesFile(apiDir, jsonFiles);
 
     attachVersionToApp(base, apiDir);
+
+    await createDataFolder({
+        inBasePath: base,
+        inJsonFiles: jsonFiles
+    });
+
 };
