@@ -8,7 +8,6 @@ import { createApiFolders } from "./folders/createApiFolders.js";
 import { createRoutesFile } from "./createRouteFile.js";
 import { attachVersionToApp } from "./alterApp.js";
 import { createDataFolder } from "./createDataFolder.js";
-import { loadSchemas } from './prepareSchema.js';
 
 function getBasePath() {
     const workspace = vscode.workspace.workspaceFolders?.[0];
@@ -46,7 +45,6 @@ export const buildAPI = async ({ context }) => {
     };
 
     const schemaDir = path.join(base, "Config", 'Schemas');
-    const schemas = loadSchemas(schemaDir);
 
     const jsonFiles = getSchemaFiles({ inSchemaDir: schemaDir });
 
@@ -57,17 +55,18 @@ export const buildAPI = async ({ context }) => {
     const apiDir = path.join(base, `V${newVersion}`);
 
     createApiFolders({
-        apiDir, schemas, context,
+        apiDir, jsonFiles, context,
+        inSchemaPath: schemaDir,
         inNewVersion: `V${newVersion}`
     });
 
-    createRoutesFile(apiDir, schemas);
+    createRoutesFile(apiDir, jsonFiles);
 
     attachVersionToApp(base, apiDir);
 
     await createDataFolder({
         inBasePath: base,
-        schemas
+        inJsonFiles: jsonFiles
     });
 
 };

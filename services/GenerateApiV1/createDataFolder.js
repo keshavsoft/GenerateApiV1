@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 
 import { startFunc as readEnvFile } from "./readEnvFile.js";
 
-export const createDataFolder = async ({ inBasePath, schemas }) => {
+export const createDataFolder = async ({ inBasePath, inJsonFiles }) => {
     const LocalEnvFileAsJson = await readEnvFile({ inRootPath: inBasePath });
     const workspaceFolders = vscode.workspace.workspaceFolders;
 
@@ -14,14 +14,18 @@ export const createDataFolder = async ({ inBasePath, schemas }) => {
         LocalEnvFileAsJson.DataPath
     );
 
+    // create folder
     await vscode.workspace.fs.createDirectory(folderUri);
 
-    for (const name of Object.keys(schemas)) {
-        const fileUri = vscode.Uri.joinPath(folderUri, `${name}.json`);
+    inJsonFiles.forEach(async element => {
+
+        // create file inside it
+        const fileUri = vscode.Uri.joinPath(folderUri, element);
 
         await vscode.workspace.fs.writeFile(
             fileUri,
-            new TextEncoder().encode(JSON.stringify([] null, 2))
+            new TextEncoder().encode(JSON.stringify({ name: "Keshav" }, null, 2))
         );
-    }
+    });
+
 };

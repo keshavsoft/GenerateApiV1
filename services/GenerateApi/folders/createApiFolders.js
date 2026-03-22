@@ -1,14 +1,16 @@
 import path from 'path';
-import { processFile } from './processSingleFile.js';
+import { startFunc as processSchema } from './processSchema.js';
 
-export function createApiFolders({ apiDir, jsonFiles, context, inSchemaPath, inNewVersion }) {
+export function createApiFolders({ apiDir, schemas, context, inNewVersion }) {
     const templateDir = path.join(context.extensionPath, 'media', 'api-template');
 
-    jsonFiles.forEach(file => processFile({
-        file,
-        apiDir,
-        schemaPath: inSchemaPath,
-        templateDir,
-        inNewVersion
-    }));
+    Object.entries(schemas).forEach(([name, schema]) => {
+        processSchema({
+            name,
+            schema,
+            apiDir,
+            templateDir,
+            inNewVersion
+        });
+    });
 }

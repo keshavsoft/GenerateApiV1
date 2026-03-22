@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-
 import { validateBuildPreChecks } from './buildPreChecks.js';
 import { showBuildErrors } from './buildErrorHandler.js';
 import { buildAPI } from '../GenerateApi/index.js';
