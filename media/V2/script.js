@@ -14,7 +14,7 @@ document.getElementById("build").addEventListener("click", () => {
 
 window.addEventListener('message', (event) => {
     const msg = event.data;
-    // debugger;
+    debugger;
     if (msg.type === 'init') {
         updateUI(msg.hasSchema);
     };
@@ -25,18 +25,18 @@ window.addEventListener('message', (event) => {
 });
 
 function updateUI(hasSchema) {
-    const create = document.getElementById('create');
-    const build = document.getElementById('build');
-    const del = document.getElementById('delete');
+    const create = document.getElementById('initialView');
+    const build = document.getElementById('afterCreateView');
 
-    create.style.display = 'block';
+    // create.style.display = 'block';
 
     if (hasSchema) {
-        build.style.display = 'block';
-        del.style.display = 'block';
         create.style.display = "none";
+
+        build.style.display = 'block';
     } else {
+        create.style.display = "block";
+
         build.style.display = 'none';
-        del.style.display = 'none';
     }
 };

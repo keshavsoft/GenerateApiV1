@@ -14,7 +14,6 @@ export const handleMessage = async (message, context, panel) => {
         await buildApi(context);
 
         panel.webview.postMessage({
-
             type: 'BuildCompleted'
         });
     }

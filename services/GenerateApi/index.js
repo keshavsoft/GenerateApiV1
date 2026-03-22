@@ -35,7 +35,7 @@ function copyTemplateOnce(base, context) {
 };
 
 // orchestration only
-export const buildAPI = async (context) => {
+export const buildAPI = async ({ context }) => {
     const base = getBasePath();
     if (!base) return;
 

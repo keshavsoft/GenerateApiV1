@@ -3,9 +3,17 @@ import { validateBuildPreChecks } from './buildPreChecks.js';
 import { showBuildErrors } from './buildErrorHandler.js';
 import { buildAPI } from '../GenerateApi/index.js';
 import { handleEnvMissing } from './envHandler.js';
-
+import { hasOnlySchemaFolder } from './checkSchemaFolderOnly.js';
 
 export const StartFunc = async (context) => {
+    const firstRun = hasOnlySchemaFolder();
+
+    if (firstRun) {
+        await buildAPI({ context });
+
+        return false;
+    };
+
     const result = validateBuildPreChecks({ context });
 
     if (!result.isValid) {
