@@ -1,0 +1,1 @@
+export { attachVersionToApp } from '../../alterApp.js';

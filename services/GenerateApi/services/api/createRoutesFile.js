@@ -1,0 +1,1 @@
+export { createRoutesFile } from '../../createRouteFile.js';
