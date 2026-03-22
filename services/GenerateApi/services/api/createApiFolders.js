@@ -1,1 +1,1 @@
-export { createApiFolders } from '../../folders/createApiFolders.js';
+export { createApiFolders } from './folders/createApiFolders.js';
