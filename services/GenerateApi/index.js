@@ -3,12 +3,12 @@ import fs from 'fs';
 import path from 'path';
 
 import { createVersionFolder } from "./version/createVersion.js";
-import { getSchemaFiles } from "./schema/getSchemaFiles.js";
+import { loadSchemas } from './prepareSchema.js';
 import { createApiFolders } from "./folders/createApiFolders.js";
 import { createRoutesFile } from "./createRouteFile.js";
 import { attachVersionToApp } from "./alterApp.js";
+
 import { createDataFolder } from "./createDataFolder.js";
-import { loadSchemas } from './prepareSchema.js';
 
 function getBasePath() {
     const workspace = vscode.workspace.workspaceFolders?.[0];
@@ -47,10 +47,6 @@ export const buildAPI = async ({ context }) => {
 
     const schemaDir = path.join(base, "Config", 'Schemas');
     const schemas = loadSchemas(schemaDir);
-
-    const jsonFiles = getSchemaFiles({ inSchemaDir: schemaDir });
-
-    if (!jsonFiles.length) return;
 
     const newVersion = createVersionFolder(base);
 

@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+
 import { getWebviewContent } from './ui/getWebviewContent.js';
 import { handleMessage } from './handlers/messageHandler.js';
 import { sendInitialState } from './handlers/initHandler.js';
