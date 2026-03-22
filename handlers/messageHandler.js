@@ -1,5 +1,5 @@
 import { createSchemaStart } from '../services/schemaService.js';
-import { StartFunc as buildApi } from '../services/buildApi.js';
+import { StartFunc as buildApi } from '../services/Build/buildApi.js';
 
 export const handleMessage = async (message, context, panel) => {
     if (message.command === 'createSchema') {
@@ -14,6 +14,7 @@ export const handleMessage = async (message, context, panel) => {
         await buildApi(context);
 
         panel.webview.postMessage({
+
             type: 'BuildCompleted'
         });
     }

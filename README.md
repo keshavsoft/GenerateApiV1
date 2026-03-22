@@ -220,3 +220,7 @@ rest files created perfect
 1.1.11
 
 Data folder perfect still need to work on data inside from schema
+
+1.1.12
+
+error handling perfect
