@@ -49,7 +49,12 @@
             "showInUi": true
         }
     ],
-    "data": [],
+    "data": [
+        {
+            "Name": "Keshav",
+            "Mobile": 9848163021
+        }
+    ],
     "Vertical": [],
     "DataTableOptions": {
         "Header": {

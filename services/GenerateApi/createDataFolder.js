@@ -35,12 +35,16 @@ const createFolder = async (folderUri) => {
 };
 
 const createSchemaFiles = async (folderUri, schemas) => {
-    for (const name of Object.keys(schemas)) {
-        const fileUri = vscode.Uri.joinPath(folderUri, `${name}.json`);
+    for (const [key, value] of Object.entries(schemas)) {
+        const fileUri = vscode.Uri.joinPath(folderUri, `${key}.json`);
 
         await vscode.workspace.fs.writeFile(
             fileUri,
-            new TextEncoder().encode(JSON.stringify([], null, 2))
+            new TextEncoder().encode(JSON.stringify(value.data, null, 2))
         );
-    }
+    };
+
+    // for (const name of Object.keys(schemas)) {
+
+    // }
 };
