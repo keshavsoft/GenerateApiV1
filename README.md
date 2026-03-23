@@ -1,262 +1,186 @@
-# KeshavAI – Voice to Text for VS Code (Windows)
+# 🚀 AI Schema Generator (VS Code Extension)
 
-KeshavAI is a **VS Code extension** that converts **spoken audio from your microphone into text** using a fully **offline speech-to-text pipeline**.
-
-No cloud APIs or internet connection are required.
-
-The extension uses:
-
-* **SoX** – to capture microphone audio
-* **Whisper.cpp** – to transcribe speech locally
-* **Node.js (VS Code extension host)** – to control the workflow
+Instantly generate a structured backend project and APIs directly inside VS Code.
 
 ---
 
-# How It Works
+## 📌 What is this?
 
-The extension follows this pipeline:
+**AI Schema Generator** is a VS Code extension that helps you:
 
-```
-Microphone
-   ↓
-SoX (record audio)
-   ↓
-voice.wav
-   ↓
-Whisper.cpp
-   ↓
-Transcribed text
-   ↓
-VS Code popup
-```
-
-Everything runs **locally on your machine**.
+* Generate a complete backend project structure
+* Auto-create folders, config, and base files
+* Build APIs from schema instantly
+* Run and test your project in seconds
 
 ---
 
-# Features
+## ⚡ Features
 
-* Fully **offline speech recognition**
-* Works directly inside **VS Code**
-* No API keys required
-* Uses **Whisper Tiny model** for fast transcription
-* Simple command to capture speech
+### 1. One-click Schema Creation
 
----
+* Creates project structure automatically:
 
-# Requirements
+  ```
+  Config/
+  Data/
+  ForFrontEnd/
+  V1/
+  ```
 
-This extension currently supports:
+* Generates essential files:
 
-```
-Windows
-```
-
-The extension bundles:
-
-```
-Whisper CLI
-Whisper model
-SoX executable
-```
-
-So the user **does not need to install any additional software**.
+  * `.env`
+  * `.env.local`
+  * `app.js`
+  * `package.json`
 
 ---
 
-# Project Structure
+### 2. API Builder
+
+* Converts generated schema into working APIs
+* Ready-to-run Node.js backend
+
+---
+
+### 3. Integrated Workflow
+
+Everything happens inside VS Code:
+
+* No manual setup
+* No boilerplate writing
+* No folder creation
+
+---
+
+## 🧠 How It Works
+
+1. Open Command Palette
+
+   ```
+   Ctrl + Shift + P
+   ```
+
+2. Run:
+
+   ```
+   ext openUI
+   ```
+
+3. Click:
+
+   * ✅ **Create Schema**
+   * ✅ **Build API**
+
+---
+
+## ▶️ Running the Project
+
+After schema generation:
+
+```bash
+npm install
+npm run start
+```
+
+Output:
 
 ```
-keshavai
+Example app listening on port 3000
+http://localhost:3000
+```
+
+---
+
+## 📁 Generated Structure
+
+```
+project-root/
 │
-├── Commands
-│   └── voiceToText.js
+├── Config/
+├── Data/
+├── ForFrontEnd/
+├── V1/
 │
-├── helpers
-│   ├── VoiceCapture.js
-│   │
-│   ├── sox
-│   │   ├── sox.exe
-│   │   └── dll files
-│   │
-│   ├── Release
-│   │   └── whisper-cli.exe
-│   │
-│   └── models
-│       └── ggml-tiny.en.bin
-│
-└── extension.js
+├── .env
+├── .env.local
+├── app.js
+├── package.json
 ```
 
 ---
 
-# Running the Extension Locally
+## 🎯 Design Philosophy
 
-Clone the repository:
+This tool is built on:
 
-```
-git clone https://github.com/keshavsoft/keshavai
-```
-
-Open the project in **Visual Studio Code**.
-
-Run the extension:
-
-```
-F5
-```
-
-This launches the **Extension Development Host**.
+* **Orchestration over complexity**
+* **Zero manual setup**
+* **Fast backend bootstrapping**
 
 ---
 
-# Using Voice to Text
+## ⚠️ Current Scope
 
-Open the command palette:
+To keep things simple and fast:
 
-```
-Ctrl + Shift + P
-```
-
-Run:
-
-```
-Voice To Text
-```
-
-The extension will:
-
-```
-🎤 Record audio for 3 seconds
-🧠 Transcribe speech
-📄 Display the recognized text
-```
-
-Example output:
-
-```
-Hello how are you good morning
-```
+* Only essential schema generation is supported
+* Limited UI interactions
+* Focus is on speed, not customization
 
 ---
 
-# Technologies Used
+## 🚧 Known Limitations
 
-```
-Node.js
-VS Code Extension API
-SoX
-Whisper.cpp
-```
+* Column-level customization is minimal
+* Some endpoints (GET/POST variants) may be limited
+* No schema editor UI yet
 
 ---
 
-# Limitations
+## 🔮 Future Improvements (Optional)
 
-* Currently supports **Windows only**
-* Recording duration is **3 seconds**
-* Output appears in a **popup message**
-
-Future improvements may include:
-
-```
-Continuous listening
-Insert text directly into editor
-Cross-platform support
-```
+* Schema editor inside UI
+* API preview panel
+* Progress indicators
+* Selective rebuild
 
 ---
 
-| Command                     | Description         |
-| --------------------------- | ---------------------------------------------------- |
-| `keshavai.helloWorld`       | Basic test command                                   |
-| `keshavai.rightClickRoot`   | Runs command from workspace root                     |
-| `keshavai.rightClickFolder` | Runs command from selected folder                    |
-| `keshavai.rightClickFile`   | Runs command from selected file                      |
-| `voice`                     | Records microphone audio and converts speech to text |
-| `keshavai.showHtml`         | Opens extension HTML webview                         |
-| `keshavai.FetchAsPost`      | Fetch API request using POST                         |
-| `keshavai.FetchAsGet`       | Fetch API request using GET                          |
+## 👨‍💻 Developer Notes
 
+* Built as a VS Code Extension
+* Uses Webview for UI
+* Node.js backend generation
+* File system driven architecture
 
-# License
+---
 
-1.1.2
+## ✅ Why This Exists
 
-Schema copie
+To eliminate:
 
-1.1.3
+* Repetitive project setup
+* Boilerplate coding
+* Manual folder structuring
 
-routes js perfect
+And replace it with:
 
-1.1.4
+> ⚡ One-click backend generation
 
-routes and sub route perfect
+---
 
-1.1.5
+## 🏁 Summary
 
-first copy perfect
+If you want to:
 
-1.1.6
+* Start backend projects instantly
+* Avoid setup overhead
+* Focus on actual logic
 
-alter app file perfect
+This tool gives you a **ready-to-run foundation in seconds.**
 
-1.1.7
+---
 
-commonfuncs folder perfect
-
-1.1.8
-
-schema columns perfect
-
-1.1.9
-
-still working on sub routes
-
-1.1.10
-
-rest files created perfect
-
-1.1.11
-
-Data folder perfect still need to work on data inside from schema
-
-1.1.12
-
-error handling perfect
-
-1.1.13
-
-UI better
-
-1.1.14
-
-common schemas perfect
-
-1.1.15
-
-Data creation perfect, next data from json
-
-1.1.16
-
-Data perfect dumped from schema
-
-1.1.17
-
-still working on buildAPI
-
-1.1.18
-
-buildAPI orchestration complete
-
-1.1.19
-
-GenerateApi all good now needs to start versioning
-
-1.1.20
-
-version started
-
-1.2.1
-
-terminal perfect 3000 running
+**Built with focus on simplicity and speed.**
