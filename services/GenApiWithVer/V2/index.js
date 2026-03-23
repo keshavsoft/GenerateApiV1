@@ -29,6 +29,4 @@ export const buildAPI = async ({ context }) => {
     await createDataFolder({ inBasePath: base, schemas });
 
     runInTerminal({ cwd: base });
-
-    vscode.tasks.executeTask(task);
 };
