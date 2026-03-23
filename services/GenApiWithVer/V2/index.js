@@ -28,14 +28,6 @@ export const buildAPI = async ({ context }) => {
 
     await createDataFolder({ inBasePath: base, schemas });
 
-    // const task = new vscode.Task(
-    //     { type: 'shell' },
-    //     vscode.TaskScope.Workspace,
-    //     'Run App',
-    //     'extension',
-    //     new vscode.ShellExecution('npm i && npm run start')
-    // );
-
     runInTerminal({ cwd: base });
 
     vscode.tasks.executeTask(task);
