@@ -4,7 +4,8 @@ import { validateBuildPreChecks } from './buildPreChecks.js';
 import { showBuildErrors } from './buildErrorHandler.js';
 import { handleEnvMissing } from './envHandler.js';
 import { hasOnlySchemaFolder } from './checkSchemaFolderOnly.js';
-import { buildAPI } from '../GenApiWithVer/V1/index.js';
+//import { buildAPI } from '../GenApiWithVer/V1/index.js';
+import { buildAPI } from '../GenApiWithVer/V2/index.js';
 
 export const StartFunc = async (context) => {
     const firstRun = hasOnlySchemaFolder();

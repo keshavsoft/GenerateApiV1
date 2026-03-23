@@ -256,3 +256,7 @@ GenerateApi all good now needs to start versioning
 1.1.20
 
 version started
+
+1.2.1
+
+terminal perfect 3000 running
