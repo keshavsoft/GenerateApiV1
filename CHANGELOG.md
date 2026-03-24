@@ -43,3 +43,7 @@ All notable changes to this extension are documented here.
 * Schema creation
 * API builder
 * Folder automation
+
+## [1.2.6]
+
+### ✅ with ui

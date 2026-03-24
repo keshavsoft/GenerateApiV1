@@ -3,7 +3,7 @@
   "displayName": "GenerateApiV1",
   "publisher": "KeshavSoft",
   "description": "KeshavSoft AI with voice capture",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "type": "module",
   "capabilities": {
     "untrustedWorkspaces": {
