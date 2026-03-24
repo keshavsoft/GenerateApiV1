@@ -20,7 +20,7 @@ export function getWebviewContent(context, panel) {
     );
 
     const jsUri = panel.webview.asWebviewUri(
-        vscode.Uri.file(path.join(mediaPath, 'script.js'))
+        vscode.Uri.file(path.join(mediaPath, "Js", 'startFunc.js'))
     );
 
     html = html.replaceAll('{{CSS_URI}}', cssUri.toString());
