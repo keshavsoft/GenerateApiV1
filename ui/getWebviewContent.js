@@ -3,7 +3,7 @@ import path from 'path';
 import * as vscode from 'vscode';
 
 export function getWebviewContent(context, panel) {
-    const VERSION = 'v2';
+    const VERSION = 'v3';
 
     const mediaPath = path.join(context.extensionPath, 'media', VERSION);
 

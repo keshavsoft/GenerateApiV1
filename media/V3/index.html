@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- <link href="styles.css" rel="stylesheet"> -->
+    <link href="{{CSS_URI}}" rel="stylesheet">
+
+    <style id="rocket-style">
+        @keyframes floatRocket {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        #rocket {
+            animation: floatRocket 2s ease-in-out infinite;
+        }
+
+        .mainBtn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+
+        .mainBtn:hover {
+            transform: scale(1.03);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+
+        .danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 4px 0 8px 4px;
+        }
+    </style>
+</head>
+
+<body style="margin:0; font-family:sans-serif; background:#0f172a; color:white;">
+
+    <div style="
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  ">
+
+        <div style="
+  width:400px;
+  background:rgba(30,41,59,0.8);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  backdrop-filter: blur(10px);
+">
+
+            <h1 style="margin-bottom:10px;">
+                <span id="rocket" style="display:inline-block;">🚀</span>
+                AI Schema Generator
+            </h1>
+
+            <p style="color:#cbd5f5; margin-bottom:20px;">
+                Instantly generate your project structure.
+            </p>
+            <div id="initialView">
+                <button id="create" style="
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.2s;
+" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <span id="btnText">Create Schema</span>
+                </button>
+
+            </div>
+            <div id="afterCreateView" style="display:none;">
+
+                <div style="margin-top:15px; text-align:left;">
+                    <button class="btn danger">Delete Schema</button>
+                    <p class="hint">Removes all generated folders & resets project.</p>
+
+                    <button class="btn success" id="build">Build API</button>
+                    <p class="hint">Generates API files from existing schema.</p>
+
+                    <button class="btn success" id="buildApiAndUI">Build API and UI</button>
+                    <p class="hint">Generates API files from existing schema.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script id="anim-js">
+        document.getElementById("create").onclick = () => {
+            debugger;
+            const textEl = document.getElementById("btnText");
+            const text = "Create Schema";
+
+            textEl.innerHTML = "";
+
+            // break into letters
+            text.split("").forEach((char, i) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.style.opacity = 0;
+                span.style.display = "inline-block";
+                span.style.transform = "translateY(10px)";
+                span.style.transition = "0.3s";
+
+                textEl.appendChild(span);
+
+                setTimeout(() => {
+                    span.style.opacity = 1;
+                    span.style.transform = "translateY(0)";
+                }, i * 50);
+            });
+        };
+    </script>
+    <script src="{{JS_URI}}"></script>
+</body>
+
+</html>
