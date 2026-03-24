@@ -6,7 +6,7 @@ function isFirstRun(base) {
 }
 
 function copyTemplateOnce(base, context) {
-    const source = path.join(context.extensionPath, 'media', 'template');
+    const source = path.join(context.extensionPath, 'media', 'TemplateVersions', "V1");
     if (!fs.existsSync(source)) return;
 
     fs.cpSync(source, base, {

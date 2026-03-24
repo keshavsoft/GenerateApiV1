@@ -1,5 +1,5 @@
 import { hasOnlySchemaFolder } from '../checkSchemaFolderOnly.js';
-import { buildAPI } from '../../../GenApiWithVer/V3/index.js';
+import { buildAPI } from '../../../GenApiWithVer/V4/index.js';
 
 export const stepHandleFirstRun = async ({ context }) => {
 

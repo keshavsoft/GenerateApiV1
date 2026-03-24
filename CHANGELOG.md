@@ -47,3 +47,7 @@ All notable changes to this extension are documented here.
 ## [1.2.6]
 
 ### ✅ with ui
+
+## [1.2.7]
+
+### ✅ with ui perfect for ordermanV5

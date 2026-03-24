@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 import { validateBuildPreChecks } from '../buildPreChecks.js';
 import { handleEnvMissing } from '../envHandler.js';
-import { buildAPI } from '../../../GenApiWithVer/V3/index.js';
+import { buildAPI } from '../../../GenApiWithVer/V4/index.js';
 
 export const stepHandleNormalRun = async ({ context }) => {
 
