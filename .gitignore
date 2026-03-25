@@ -4,3 +4,4 @@ node_modules
 .env
 
 !media/TemplateVersions/V1/.env
+!media/TemplateVersions/V2/.env

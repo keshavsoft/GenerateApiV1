@@ -1,0 +1,12 @@
+import path from "path";
+
+export const CONFIG = {
+    PUBLIC_DIR: "Public",
+    VERSION_PREFIX: "V",
+    SCHEMA_FILE: "Config/ui.json",
+    SCHEMA_FOLDER: "Schemas",
+    COMMON_REPO: "OrderManUiV1",
+    COMMON_REPO_GIT: "https://github.com/keshavsoft/OrderManUiV1"
+};
+
+CONFIG.COMMON_REPO_PATH = path.join("..", CONFIG.COMMON_REPO);

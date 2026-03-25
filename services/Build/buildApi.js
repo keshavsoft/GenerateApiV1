@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 
 import { validateBuildPreChecks } from './buildPreChecks.js';
-import { showBuildErrors } from './buildErrorHandler.js';
 import { handleEnvMissing } from './envHandler.js';
 import { hasOnlySchemaFolder } from './checkSchemaFolderOnly.js';
 //import { buildAPI } from '../GenApiWithVer/V1/index.js';

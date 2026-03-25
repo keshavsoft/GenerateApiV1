@@ -11,8 +11,8 @@ export const runInTerminal = ({ cwd }) => {
     // terminal.sendText(`node ./ForFrontEnd/NonSecured/latestVersion.js`);
     // terminal.sendText(`node ./ForFrontEnd/NonSecured/Builder/main.js`);
 
-    terminal.sendText(`node ./ForFrontEnd/V2/latestVersionToEnv.js`);
-    terminal.sendText(`node ./ForFrontEnd/V2/Builder/main.js`);
+    terminal.sendText(`node ./ForFrontEnd/V3/latestVersionToEnv.js`);
+    terminal.sendText(`node ./ForFrontEnd/V3/Builder/main.js`);
 
     terminal.sendText('npm i');
     terminal.sendText('npm run start');
