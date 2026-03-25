@@ -5,12 +5,15 @@ import { StartFunc as createHttpFiles } from './CreateHttpFiles/entryFile.js';
 
 const ensureDir = (dir) => fs.mkdirSync(dir, { recursive: true });
 
-const writeParams = ({ target, tableName, columns, inSubRoutes }) => {
+const writeParams = ({ target, tableName, columns, DependantTables,
+    ForeignkeyTables, inSubRoutes }) => {
     const dir = path.join(target, 'CommonFuncs');
     ensureDir(dir);
 
     const params = {
         DataPath: "Data", TableName: tableName, Columns: columns || [],
+        DependantTables,
+        ForeignkeyTables,
         NonSecured: {
             SubRoutes: inSubRoutes
         }
@@ -35,7 +38,9 @@ export const startFunc = ({ name, schema, apiDir, templateDir, inNewVersion }) =
         target,
         tableName: name,
         columns: schema.columns,
-        inSubRoutes: schema.NonSecured.SubRoutes
+        DependantTables: schema?.DependantTables ?? [],
+        ForeignkeyTables: schema?.ForeignkeyTables ?? [],
+        inSubRoutes: schema?.NonSecured?.SubRoutes ?? []
     });
 
     copyTemplates({
